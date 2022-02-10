@@ -9,7 +9,7 @@
 
                     <div class="card-body">
 
-                        <form method="POST" action="#">
+                        <form method="POST" action="/check">
                             @csrf
 
                             <div class="row mb-3">
