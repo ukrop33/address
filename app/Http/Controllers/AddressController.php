@@ -9,7 +9,7 @@ class AddressController extends Controller
 {
     public function index()
     {
-        return view('index');
+        return view('index')->with('suggestions', null);
     }
 
     public function check(Request $request)
@@ -26,9 +26,17 @@ class AddressController extends Controller
 
         try {
             $dadata = DaDataAddress::prompt($request->input('address'));
-            dd($dadata);
+
+
+            return view('index')->with('suggestions', $dadata['suggestions']);
+            #dd($dadata);
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
+    }
+
+    public function save()
+    {
+        return view('index')->with('suggestions', null);
     }
 }

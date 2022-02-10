@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'AddressController@index');
-Route::post('/check', 'AddressController@check');
+Route::post('/', 'AddressController@check');
+
+Route::post('/cancel', 'AddressController@index');
+Route::post('/save', 'AddressController@save');
+
 
 /*
 Route::get('/', "DadataController@standardizationExample" );

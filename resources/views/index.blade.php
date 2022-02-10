@@ -5,36 +5,61 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Введите адрес') }}</div>
 
-                    <div class="card-body">
+                    @if ($suggestions === null)
+                        <div class="card-header">{{ __('Введите свой адрес') }}</div>
 
-                        <form method="POST" action="/check">
-                            @csrf
+                        <div class="card-body">
 
-                            <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Адрес') }}</label>
+                            <form method="POST" action="/">
+                                @csrf
 
-                                <div class="col-md-6">
-                                    <input id="address" name="address" type="text" class="form-control" placeholder="Населеный пункт, улица, дом, квартира"/>
-                                    <span>Например: Самара, партизанская 40, 30</span>
+                                <div class="row mb-3">
+                                    <label for="name"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Адрес') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="address" name="address" type="text" class="form-control"
+                                            placeholder="Населеный пункт, улица, дом, квартира" />
+                                        <span>Например: Самара, партизанская 40, 30</span>
+                                    </div>
                                 </div>
+
+                                <div class="row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Ввести') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        @else
+                            <div class="card-header mb-3">{{ __('Введите подходящий адрес из предложенных') }}</div>
+
+                            <div class="info">
+                                <form action="/save" method="post">
+                                    @foreach ($suggestions as $el)
+                                        <p class="ml-3">
+                                            <input type="radio" name="address" value="{{ $el['unrestricted_value'] }}">
+                                            <span>{{ $el['unrestricted_value'] }}</span>
+                                        </p>
+                                    @endforeach
+                                    <button type="submit" class="btn btn-success">Сохранить</button>
+                                </form>
+
+                                <form action="/cancel" method="post">
+                                    <input type="hidden" name="cancel">
+                                    <button type="submit" class="btn btn-danger">Отмена</button>
+                                </form>
+
                             </div>
 
-
-
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Ввести') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 
