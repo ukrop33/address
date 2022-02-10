@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Сохрани свой адрес') }}</div>
+                    <div class="card-header">{{ __('Введите адрес') }}</div>
 
                     <div class="card-body">
 
@@ -16,7 +16,8 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Адрес') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="address" name="address" type="text" class="form-control"/>
+                                    <input id="address" name="address" type="text" class="form-control" placeholder="Населеный пункт, улица, дом, квартира"/>
+                                    <span>Например: Самара, партизанская 40, 30</span>
                                 </div>
                             </div>
 

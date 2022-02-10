@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'AddressController@index');
+Route::post('/check', 'AddressController@check');
+
 /*
 Route::get('/', "DadataController@standardizationExample" );
 */
