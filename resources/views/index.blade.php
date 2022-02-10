@@ -21,7 +21,7 @@
                                     <div class="col-md-6">
                                         <input id="address" name="address" type="text" class="form-control"
                                             placeholder="Населеный пункт, улица, дом, квартира" />
-                                        <span>Например: Самара, партизанская 40, 30</span>
+                                        <span>Например: Самара, партизанская 40</span>
                                     </div>
                                 </div>
 
@@ -39,16 +39,17 @@
 
                             <div class="info">
                                 <form action="/save" method="post">
+                                    @csrf
                                     @foreach ($suggestions as $el)
                                         <p class="ml-3">
-                                            <input type="radio" name="address" value="{{ $el['unrestricted_value'] }}">
+                                            <input type="radio" name="save-address" value="{{ $el['unrestricted_value'] }}">
                                             <span>{{ $el['unrestricted_value'] }}</span>
                                         </p>
                                     @endforeach
-                                    <button type="submit" class="btn btn-success">Сохранить</button>
+                                    <button type="submit" class="btn btn-success ml-3">Сохранить</button>
                                 </form>
 
-                                <form action="/cancel" method="post">
+                                <form action="/cancel" method="get" class="mt-2 ml-3">
                                     <input type="hidden" name="cancel">
                                     <button type="submit" class="btn btn-danger">Отмена</button>
                                 </form>

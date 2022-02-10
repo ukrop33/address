@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'AddressController@index');
 Route::post('/', 'AddressController@check');
 
-Route::post('/cancel', 'AddressController@index');
+Route::get('/cancel', function () {
+    return redirect('/');
+});
+
 Route::post('/save', 'AddressController@save');
 
 

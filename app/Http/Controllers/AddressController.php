@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use Illuminate\Http\Request;
 use MoveMoveIo\DaData\Facades\DaDataAddress;
 
 class AddressController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $request->session()->forget('success');
         return view('index')->with('suggestions', null);
     }
 
@@ -22,7 +24,6 @@ class AddressController extends Controller
         $this->validate($request, [
             'address' => 'required'
         ]);
-         #echo $request->input('address');
 
         try {
             $dadata = DaDataAddress::prompt($request->input('address'));
@@ -35,8 +36,15 @@ class AddressController extends Controller
         }
     }
 
-    public function save()
+    public function save(Request $request)
     {
+        $dadata = DaDataAddress::standardization($request->input('save-address'));
+        #dd($dadata);
+
+        $address = new Address();
+        $address->
+
+        session(['success' => 'Адрес сохранен']);
         return view('index')->with('suggestions', null);
     }
 }
